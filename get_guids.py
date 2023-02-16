@@ -1,16 +1,29 @@
 import os.path
+import sys
 
 import requests
 from bs4 import BeautifulSoup
 
-url = 'http://127.0.0.1:8088/API/'
-r = requests.get(url)
+from config import URL
 
-if not os.path.exists('data'):
-    os.mkdir('data')
+url = f'{URL}/API/'
 
-with open('data/guids.xml', 'w') as file_xml:
-    file_xml.write(r.text)
+try:
+    if not os.path.exists('data'):
+        os.mkdir('data')
+except Exception as ex:
+    print(ex)
+    print('Error creating dir')
+    sys.exit()
+
+try:
+    r = requests.get(url)
+    with open('data/guids.xml', 'w') as file_xml:
+        file_xml.write(r.text)
+except Exception as ex:
+    print(ex)
+    print('Vmix not running, or can not connect')
+    sys.exit()
 
 with open('data/guids.xml') as file:
     src = file.read()

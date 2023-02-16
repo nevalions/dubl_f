@@ -2,11 +2,9 @@ import urllib.request
 
 from get_guids import teams_guid_pars, tablo_guid_pars, stats_guid_pars, sostav_a_guid_pars, sostav_b_guid_pars, refs_guid_pars
 
-prefix = f'http://'
-server = f'127.0.0.1'
-sep = f':'
-port = f'8088'
-vmix_browser = f'{prefix}{server}{sep}{port}/api/?Function=BrowserNavigate&Value='
+from config import URL
+
+vmix_browser = f'{URL}/api/?Function=BrowserNavigate&Value='
 
 basket_web = 'http%3A%2F%2Fig.russiabasket.ru%2F'
 
