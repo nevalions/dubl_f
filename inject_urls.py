@@ -9,6 +9,7 @@ port = f'8088'
 vmix_browser = f'{prefix}{server}{sep}{port}/api/?Function=BrowserNavigate&Value='
 
 basket_web = 'http%3A%2F%2Fig.russiabasket.ru%2F'
+
 competition = '%26compId%3D39879%26db%3Dorg%26tab%3D0%26tv%3D1%26color%3D4%26league%3D4%26'
 game_id = '169247'
 
