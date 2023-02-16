@@ -4,26 +4,24 @@ from get_guids import teams_guid_pars, tablo_guid_pars, stats_guid_pars, sostav_
 
 localhost_vmix_browser = 'http://127.0.0.1:8088/api/?Function=BrowserNavigate&Value='
 basket_web = 'http%3A%2F%2Fig.russiabasket.ru%2F'
+competition = '%26compId%3D39879%26db%3Dorg%26tab%3D0%26tv%3D1%26color%3D4%26league%3D4%26'
 game_id = '169247'
 
-teams_guid = teams_guid_pars
-input_vmix_teams = f'&Input={teams_guid}'
-teams = f'preview%2F%3FgameId%3D{game_id}%26compId%3D39879%26db%3Dorg%26tab%3D0%26tv%3D1%26color%3D4%26league%3D4%26region%3D1%26short%3D0%26teamA%3D%26teamB%3D%26leaguelogo%3D0{input_vmix_teams}'
+teams_guid = f'&Input={teams_guid_pars}'
+teams = f'preview%2F%3FgameId%3D{game_id}{competition}region%3D1%26short%3D0%26teamA%3D%26teamB%3D%26leaguelogo%3D0{teams_guid}'
 teams_api = urllib.request.urlopen(localhost_vmix_browser + basket_web + teams)
 
-tablo_guid = tablo_guid_pars
-input_vmix_tablo = f'&Input={tablo_guid}'
-tablo_teams = f'online%2F%3Fid%3D{game_id}%26compId%3Da39879%26db%3Dorg%26tab%3D0%26tv%3D1%26color%3D4%26league%3D4%26logo%3D3%26foul%3D1%26white%3D1%26blank%3D6%26short%3D1%26teamA%3D%26teamB%3D{input_vmix_tablo}'
+tablo_guid = f'&Input={tablo_guid_pars}'
+tablo_teams = f'online%2F%3Fid%3D{game_id}{competition}logo%3D3%26foul%3D1%26white%3D1%26blank%3D6%26short%3D1%26teamA%3D%26teamB%3D{tablo_guid}'
 tablo_api = urllib.request.urlopen(localhost_vmix_browser + basket_web + tablo_teams)
 
-stats_guid = stats_guid_pars
-input_vmix_stats = f'&Input={stats_guid}'
-tablo_stats = f'online-stat%2F%3Fid%3D{game_id}%26compId%3D39879%26db%3Dorg%26tab%3D0%26tv%3D1%26color%3D4%26league%3D4%26logo%3D3%26foul%3D1%26blank%3D6%26short%3D0%26teamA%3D%26teamB%3D{input_vmix_stats}'
+stats_guid = f'&Input={stats_guid_pars}'
+tablo_stats = f'online-stat%2F%3Fid%3D{game_id}{competition}logo%3D3%26foul%3D1%26blank%3D6%26short%3D0%26teamA%3D%26teamB%3D{stats_guid}'
 stats_api = urllib.request.urlopen(localhost_vmix_browser + basket_web + tablo_stats)
 
 sostav_a_guid = f'&Input={sostav_a_guid_pars}'
 rosters = 'online-roster%2F%3FgameId%3D'
-roster_url_part_one = '%26compId%3D39879%26db%3Dorg%26tab%3D0%26tv%3D1%26color%3D4%26league%3D4%26teamNumber%3D'
+roster_url_part_one = f'{competition}teamNumber%3D'
 roster_url_part_two = '%26teamA%3D%26teamB%3D'
 sostav_a = f'{rosters}{game_id}{roster_url_part_one}1{roster_url_part_two}{sostav_a_guid}'
 sostav_a_api = urllib.request.urlopen(localhost_vmix_browser + basket_web + sostav_a)
@@ -32,7 +30,6 @@ sostav_b_guid = f'&Input={sostav_b_guid_pars}'
 sostav_b = f'{rosters}{game_id}{roster_url_part_one}2{roster_url_part_two}{sostav_b_guid}'
 sostav_b_api = urllib.request.urlopen(localhost_vmix_browser + basket_web + sostav_b)
 
-refs_guid = refs_guid_pars
-input_vmix_refs = f'&Input={refs_guid}'
-refs = f'online-ref%2F%3FgameId%3D{game_id}%26compId%3D39879%26db%3Dorg%26tab%3D0%26tv%3D1%26color%3D4%26league%3D4{input_vmix_refs}'
+refs_guid = f'&Input={refs_guid_pars}'
+refs = f'online-ref%2F%3FgameId%3D{game_id}{competition}{refs_guid}'
 refs_api = urllib.request.urlopen(localhost_vmix_browser + basket_web + refs)
