@@ -24,13 +24,12 @@ stats_guid = f'&Input={stats_guid_pars}'
 tablo_stats = f'online-stat%2F%3Fid%3D{game_id}{competition}logo%3D3%26foul%3D1%26blank%3D6%26short%3D0%26teamA%3D%26teamB%3D{stats_guid}'
 stats_api = urllib.request.urlopen(vmix_browser + basket_web + tablo_stats)
 
-sostav_a_guid = f'&Input={sostav_a_guid_pars}'
 rosters = 'online-roster%2F%3FgameId%3D'
 roster_url_part_one = f'{competition}teamNumber%3D'
 roster_url_part_two = '%26teamA%3D%26teamB%3D'
+sostav_a_guid = f'&Input={sostav_a_guid_pars}'
 sostav_a = f'{rosters}{game_id}{roster_url_part_one}1{roster_url_part_two}{sostav_a_guid}'
 sostav_a_api = urllib.request.urlopen(vmix_browser + basket_web + sostav_a)
-
 sostav_b_guid = f'&Input={sostav_b_guid_pars}'
 sostav_b = f'{rosters}{game_id}{roster_url_part_one}2{roster_url_part_two}{sostav_b_guid}'
 sostav_b_api = urllib.request.urlopen(vmix_browser + basket_web + sostav_b)
