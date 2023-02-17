@@ -1,3 +1,4 @@
 requests
 beautifulsoup4
 lxml
+auto-py-to-exe
