@@ -1,13 +1,12 @@
 import os.path
 import sys
 import typing
-
 import requests
 import json
 
 from bs4 import BeautifulSoup
 
-from config import URL
+from config import URL, vmix_inputs_titles
 
 url = f'{URL}/API/'
 foldername = 'data'
@@ -47,11 +46,9 @@ def pars_vmix_xml(o_foldername: str, o_filename: str) -> typing:
         print('Error opening JSON file')
         sys.exit()
 
-    vmix_inputs_titles = ['teams', 'tablo', 'stats', 'sostav_a', 'sostav_b', 'refs']
-    parsed_match_dict = {}
-
     soup = BeautifulSoup(src, 'lxml')
 
+    parsed_match_dict = {}
     for title in vmix_inputs_titles:
         guid = soup.find('input', title=title).attrs['key']
         parsed_match_dict[title] = guid

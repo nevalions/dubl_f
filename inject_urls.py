@@ -1,4 +1,5 @@
 import json
+import sys
 import urllib.request
 
 from config import URL
@@ -15,8 +16,14 @@ def main():
 
 
 def get_parsed_guid_from_json(foldername: str, json_filename: str) -> dict:
-    with open(f'{foldername}/{json_filename}', 'r') as file:
-        guids = json.load(file)
+    try:
+        with open(f'{foldername}/{json_filename}', 'r') as file:
+            guids = json.load(file)
+    except Exception as ex:
+        print(ex)
+        print('Error opening JSON file')
+        sys.exit()
+
     return guids
 
 
