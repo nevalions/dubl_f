@@ -29,7 +29,7 @@ def get_vmix_local_xml(u: str, s_foldername: str, s_filename: str) -> typing:
 
     try:
         r = requests.get(u)
-        with open(f'{s_foldername}/{s_filename}', 'w') as file_xml:
+        with open(f'{s_foldername}/{s_filename}', 'w', encoding='utf-8') as file_xml:
             file_xml.write(r.text)
     except Exception as ex:
         print(ex)
@@ -53,8 +53,8 @@ def pars_vmix_xml(o_foldername: str, o_filename: str) -> typing:
         guid = soup.find('input', title=title).attrs['key']
         parsed_match_dict[title] = guid
 
-    with open(f'{o_foldername}/parsed_guids.json', 'w') as output_json:
-        output_json.write(json.dumps(parsed_match_dict, indent=4))
+    with open(f'{o_foldername}/parsed_guids.json', 'w', encoding='utf-8') as output_json:
+        output_json.write(json.dumps(parsed_match_dict, indent=4, ensure_ascii=False))
 
 
 if __name__ == '__main__':

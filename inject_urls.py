@@ -17,7 +17,7 @@ def main():
 
 def get_parsed_guid_from_json(foldername: str, json_filename: str) -> dict:
     try:
-        with open(f'{foldername}/{json_filename}', 'r') as file:
+        with open(f'{foldername}/{json_filename}', 'r', encoding='utf-8') as file:
             guids = json.load(file)
     except Exception as ex:
         print(ex)
