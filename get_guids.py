@@ -48,13 +48,18 @@ def pars_vmix_xml(o_foldername: str, o_filename: str) -> typing:
 
     soup = BeautifulSoup(src, 'lxml')
 
-    parsed_match_dict = {}
-    for title in vmix_inputs_titles:
-        guid = soup.find('input', title=title).attrs['key']
-        parsed_match_dict[title] = guid
+    try:
+        parsed_match_dict = {}
+        for title in vmix_inputs_titles:
+            guid = soup.find('input', title=title).attrs['key']
+            parsed_match_dict[title] = guid
 
-    with open(f'{o_foldername}/parsed_guids.json', 'w', encoding='utf-8') as output_json:
-        output_json.write(json.dumps(parsed_match_dict, indent=4, ensure_ascii=False))
+        with open(f'{o_foldername}/parsed_guids.json', 'w', encoding='utf-8') as output_json:
+            output_json.write(json.dumps(parsed_match_dict, indent=4, ensure_ascii=False))
+    except Exception as ex:
+        print(ex)
+        print(f'Error no input with title {title}')
+        sys.exit()
 
 
 if __name__ == '__main__':

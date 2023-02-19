@@ -31,16 +31,25 @@ def parse_game_url(u: str) -> dict:
 
 
 def find_id_in_url(key: str, u: str) -> str:
-    index = u.find(key) + len(key)
-    value = ''
-    while True:
-        num = u[index]
-        if num.isdigit():
-            value += str(num)
-            index = index + 1
+    try:
+        f = u.find(key)
+        if f > -1:
+            index = f + len(key)
+            value = ''
+            while True:
+                num = u[index]
+                if num.isdigit():
+                    value += str(num)
+                    index = index + 1
+                else:
+                    break
+            return value
         else:
-            break
-    return value
+            raise ValueError
+    except ValueError as ex:
+        print(ex)
+        print(f'Key "{key}" not found in {u}')
+        sys.exit()
 
 
 if __name__ == '__main__':

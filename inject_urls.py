@@ -36,17 +36,18 @@ def inject_urls_to_vmix(g_id: str, comp_id: str, league_id: str, color_id: str, 
     competition = f'%26compId%3D{comp_id}%26db%3Dorg%26tab%3D0%26tv%3D1%26color%3D{color_id}%26league%3D{league_id}%26'
 
     teams_guid = f'&Input={parsed_guids["teams"]}'
-    teams = f'preview%2F%3FgameId%3D{g_id}{competition}region%3D1%26short%3D0%26teamA%3D%26teamB%3D%26leaguelogo%3D0{teams_guid}'
-    a = vmix_browser + basket_web + teams
-    urllib.request.urlopen(a)
-    print(a)
+    teams = f'preview%2F%3FgameId%3D{g_id}{competition}region%3D1%26short%3D0%26teamA%3D%26teamB%3D%26leaguelogo%3D0' \
+            f'{teams_guid}'
+    urllib.request.urlopen(vmix_browser + basket_web + teams)
 
     tablo_guid = f'&Input={parsed_guids["tablo"]}'
-    tablo_teams = f'online%2F%3Fid%3D{g_id}{competition}logo%3D{logo_id}%26foul%3D1%26white%3D1%26blank%3D6%26short%3D1%26teamA%3D%26teamB%3D{tablo_guid}'
+    tablo_teams = f'online%2F%3Fid%3D{g_id}{competition}logo%3D{logo_id}%26foul%3D1%26white%3D1%26blank%3D6%26short' \
+                  f'%3D1%26teamA%3D%26teamB%3D{tablo_guid}'
     urllib.request.urlopen(vmix_browser + basket_web + tablo_teams)
 
     stats_guid = f'&Input={parsed_guids["stats"]}'
-    tablo_stats = f'online-stat%2F%3Fid%3D{g_id}{competition}logo%3D{logo_id}%26foul%3D1%26blank%3D6%26short%3D0%26teamA%3D%26teamB%3D{stats_guid}'
+    tablo_stats = f'online-stat%2F%3Fid%3D{g_id}{competition}logo%3D{logo_id}%26foul%3D1%26blank%3D6%26short%3D0' \
+                  f'%26teamA%3D%26teamB%3D{stats_guid}'
     urllib.request.urlopen(vmix_browser + basket_web + tablo_stats)
 
     rosters = 'online-roster%2F%3FgameId%3D'
